@@ -4,7 +4,7 @@ use IO::Socket;
 use File::Spec;
 
 $socket = IO::Socket::INET->new(PeerAddr => "127.0.0.1",
-                                PeerPort => 1234,
+                                PeerPort => $ENV{FAKE_EDITOR_TCP_PORT},
                                 Proto    => "tcp",
                                 Type     => SOCK_STREAM);
 

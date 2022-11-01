@@ -10,8 +10,9 @@ var _client_connection
 func _ready():
 	# Initialize TCP server for fake editor.
 	_server = TCP_Server.new()
-	_server.listen(1234, "127.0.0.1")
-	
+	_server.listen(0, "127.0.0.1")
+	OS.set_environment("FAKE_EDITOR_TCP_PORT", String(_server.get_local_port()))
+
 func _process(_delta):
 	if _server.is_connection_available():
 		_client_connection = _server.take_connection()

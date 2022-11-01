@@ -52,9 +52,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Rows" type="VBoxContainer" parent="."]
-anchor_right = 1.0
-anchor_bottom = 1.0
+[node name="Columns" type="HBoxContainer" parent="."]
+margin_right = 1906.0
+margin_bottom = 1064.0
+mouse_filter = 2
+size_flags_vertical = 3
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LeftSide" type="VBoxContainer" parent="Columns"]
+margin_right = 1260.0
+margin_bottom = 1064.0
+rect_min_size = Vector2( 1260, 0 )
 mouse_filter = 2
 size_flags_vertical = 3
 custom_constants/separation = 8
@@ -62,42 +72,47 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Columns" type="HBoxContainer" parent="Rows"]
-margin_right = 1904.0
-margin_bottom = 782.0
-mouse_filter = 2
-size_flags_vertical = 3
-
-[node name="Repositories" type="VBoxContainer" parent="Rows/Columns"]
-margin_right = 1266.0
-margin_bottom = 782.0
+[node name="Repositories" type="VBoxContainer" parent="Columns/LeftSide"]
+margin_right = 1260.0
+margin_bottom = 754.0
+rect_min_size = Vector2( 0, 754 )
 mouse_filter = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 2.0
 custom_constants/separation = 8
 
-[node name="RightSide" type="VBoxContainer" parent="Rows/Columns"]
-margin_left = 1271.0
-margin_right = 1904.0
-margin_bottom = 782.0
+[node name="Cards" parent="Columns/LeftSide" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 762.0
+margin_right = 1260.0
+margin_bottom = 1064.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.0
+
+[node name="RightSide" type="VBoxContainer" parent="Columns"]
+margin_left = 1265.0
+margin_right = 1906.0
+margin_bottom = 1064.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 8
 
-[node name="LevelInfo" type="VBoxContainer" parent="Rows/Columns/RightSide"]
-margin_right = 633.0
-margin_bottom = 595.0
+[node name="LevelInfo" type="VBoxContainer" parent="Columns/RightSide"]
+margin_right = 641.0
+margin_bottom = 448.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 custom_constants/separation = 8
 
-[node name="LevelPanel" type="VBoxContainer" parent="Rows/Columns/RightSide/LevelInfo"]
-margin_right = 633.0
-margin_bottom = 595.0
+[node name="LevelPanel" type="VBoxContainer" parent="Columns/RightSide/LevelInfo"]
+margin_right = 641.0
+margin_bottom = 448.0
 size_flags_vertical = 3
 
-[node name="LevelName" type="RichTextLabel" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel"]
-margin_right = 633.0
+[node name="LevelName" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel"]
+margin_right = 641.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_stretch_ratio = 0.0
@@ -109,13 +124,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Control" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel"]
+[node name="Text" type="Control" parent="Columns/RightSide/LevelInfo/LevelPanel"]
 margin_top = 65.0
-margin_right = 633.0
-margin_bottom = 590.0
+margin_right = 641.0
+margin_bottom = 443.0
 size_flags_vertical = 3
 
-[node name="LevelDescription" type="RichTextLabel" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel/Text"]
+[node name="LevelDescription" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel/Text"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
@@ -126,7 +141,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelCongrats" type="RichTextLabel" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel/Text"]
+[node name="LevelCongrats" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel/Text"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -138,45 +153,29 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Goals" type="VBoxContainer" parent="Rows/Columns/RightSide/LevelInfo/LevelPanel"]
-margin_top = 595.0
-margin_right = 633.0
-margin_bottom = 595.0
+[node name="Goals" type="VBoxContainer" parent="Columns/RightSide/LevelInfo/LevelPanel"]
+margin_top = 448.0
+margin_right = 641.0
+margin_bottom = 448.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="FileBrowser" parent="Rows/Columns/RightSide" instance=ExtResource( 5 )]
+[node name="FileBrowser" parent="Columns/RightSide" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 603.0
-margin_right = 633.0
-margin_bottom = 782.0
+margin_top = 456.0
+margin_right = 641.0
+margin_bottom = 608.0
+rect_min_size = Vector2( 0, 152 )
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 
-[node name="Controls" type="HBoxContainer" parent="Rows"]
-margin_top = 790.0
-margin_right = 1904.0
+[node name="Terminal" parent="Columns/RightSide" instance=ExtResource( 1 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 616.0
+margin_right = 641.0
 margin_bottom = 1064.0
-mouse_filter = 2
-size_flags_vertical = 3
-size_flags_stretch_ratio = 0.35
-
-[node name="Cards" parent="Rows/Controls" instance=ExtResource( 3 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_right = 1266.0
-margin_bottom = 274.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-size_flags_stretch_ratio = 2.0
-
-[node name="Terminal" parent="Rows/Controls" instance=ExtResource( 1 )]
-anchor_right = 0.0
-anchor_bottom = 0.0
-margin_left = 1271.0
-margin_right = 1904.0
-margin_bottom = 274.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 
@@ -276,8 +275,8 @@ text = "Next level"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="saved" from="Rows/Columns/RightSide/FileBrowser" to="." method="update_repos"]
-[connection signal="command_done" from="Rows/Controls/Terminal" to="." method="update_repos"]
+[connection signal="saved" from="Columns/RightSide/FileBrowser" to="." method="update_repos"]
+[connection signal="command_done" from="Columns/RightSide/Terminal" to="." method="update_repos"]
 [connection signal="pressed" from="Menu/BackButton" to="." method="back"]
 [connection signal="pressed" from="Menu/ReloadButton2" to="." method="reload_level"]
 [connection signal="pressed" from="Menu/CardsButton" to="." method="toggle_cards"]

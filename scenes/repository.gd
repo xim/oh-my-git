@@ -176,8 +176,9 @@ func update_refs():
 			n.children = {ref_target(r): ""}
 			n.position = find_position(n)
 			nodes.add_child(n)
-		var n = objects[r]
-		n.children = {ref_target(r): ""}
+		else:
+			var n = objects[r]
+			n.children = {ref_target(r): ""}
 	
 func apply_forces():
 	for o in objects.values():

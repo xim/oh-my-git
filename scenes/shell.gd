@@ -57,7 +57,14 @@ func run_async_thread(shell_command):
 	for variable in env:
 		hacky_command += "export %s='%s';" % [variable, env[variable]]
 	
-	hacky_command += "export PATH=\'"+game.tmp_prefix+":'\"$PATH\";"
+	var tmp_path = game.tmp_prefix
+	if _os == "Windows":
+		# Putting "C:/Users" into the path list means it will look for filen in "C" and "/Users"
+		# With this change, you get the msys/cygwin compatible "/C/Users"
+		var drive_regex = RegEx.new()
+		drive_regex.compile("^(.):")
+		tmp_path = drive_regex.sub(tmp_path, "/$1")
+	hacky_command += "export PATH=\'"+tmp_path+":'\"$PATH\";"
 	hacky_command += "cd '%s' || exit 1;" % _cwd
 	hacky_command += command
 

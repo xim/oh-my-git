@@ -66,7 +66,10 @@ func run_async_thread(shell_command):
 		tmp_path = drive_regex.sub(tmp_path, "/$1")
 	hacky_command += "export PATH=\'"+tmp_path+":'\"$PATH\";"
 	hacky_command += "cd '%s' || exit 1;" % _cwd
-	hacky_command += command
+	if command.find("<") == -1 and command.find("|") == -1:
+		hacky_command += command + " </dev/null"
+	else:
+		hacky_command += command
 
 	var result
 	if _os == "X11" or _os == "OSX":

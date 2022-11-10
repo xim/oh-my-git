@@ -16,7 +16,6 @@ var _home_rotation = null
 onready var energy_label = $Sprite/Energy
 
 func _ready():
-	set_process_unhandled_input(true)
 	set_energy(energy)
 	
 func _process(delta):
@@ -37,7 +36,7 @@ func _process(delta):
 	
 	scale = lerp(scale, Vector2(target_scale, target_scale), 10*delta)
 
-func _unhandled_input(event):
+func _gui_input(event):
 	if event is InputEventMouseButton:
 		if event.button_index == BUTTON_LEFT and event.pressed and hovered:
 			dragged = true
@@ -63,7 +62,12 @@ func _unhandled_input(event):
 			elif "[" in command:
 				move_back()
 			else:
-				try_play(command)
+				var repos = $"../../../..".repositories_node
+				var pos = get_global_mouse_position()
+				if repos.get_global_rect().has_point(pos):
+					try_play(command)
+				else:
+					move_back()
 				
 func _turn_on_highlights():
 	var arg_regex = RegEx.new()

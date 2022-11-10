@@ -8,12 +8,12 @@ onready var output = terminal.output
 onready var repositories_node = $Columns/LeftSide/Repositories
 var repositories = {}
 onready var next_level_button = $Menu/NextLevelButton
-onready var level_name = $Columns/RightSide/LevelInfo/LevelPanel/LevelName
-onready var level_description = $Columns/RightSide/LevelInfo/LevelPanel/Text/LevelDescription
-onready var level_congrats = $Columns/RightSide/LevelInfo/LevelPanel/Text/LevelCongrats
+onready var level_name = $Columns/RightSide/Top/LevelInfo/LevelPanel/LevelName
+onready var level_description = $Columns/RightSide/Top/LevelInfo/LevelPanel/Text/LevelDescription
+onready var level_congrats = $Columns/RightSide/Top/LevelInfo/LevelPanel/Text/LevelCongrats
 onready var cards = $Columns/LeftSide/Cards
-onready var file_browser = $Columns/RightSide/FileBrowser
-onready var goals = $Columns/RightSide/LevelInfo/LevelPanel/Goals
+onready var file_browser = $Columns/RightSide/Top/FileBrowser
+onready var goals = $Columns/RightSide/Top/LevelInfo/LevelPanel/Goals
 
 var _hint_server
 var _hint_client_connection
@@ -52,10 +52,6 @@ func _process(delta):
 		game.notify(message)
 #	if game.used_cards:
 #		$Menu/CLIBadge.impossible = true
-		
-	# Magic height number to fix a weird rescaling bug that affected
-	# the Rows height. 
-	$Columns.rect_size.y = 1064
 
 func load_chapter(id):
 	game.current_chapter = id

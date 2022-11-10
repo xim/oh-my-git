@@ -42,7 +42,7 @@ func _process(_delta):
 	if path:
 		apply_forces()
 		
-func _unhandled_input(event):
+func _gui_input(event):
 	if event as InputEventPanGesture:
 		var factor = event.get_delta().y * 0.1
 		nodes.rect_scale += Vector2(factor, factor)

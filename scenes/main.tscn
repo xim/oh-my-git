@@ -34,11 +34,10 @@ margin_top = 8.0
 margin_right = -8.0
 margin_bottom = -8.0
 mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme = ExtResource( 6 )
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 layer = -1
@@ -48,71 +47,62 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 mouse_filter = 2
 color = Color( 0.0705882, 0.0705882, 0.0705882, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
-[node name="Columns" type="HBoxContainer" parent="."]
-margin_right = 1906.0
-margin_bottom = 1064.0
-mouse_filter = 2
-size_flags_vertical = 3
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="Columns" type="HSplitContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+split_offset = 500
 
-[node name="LeftSide" type="VBoxContainer" parent="Columns"]
-margin_right = 1260.0
+[node name="LeftSide" type="VSplitContainer" parent="Columns"]
+margin_right = 1100.0
 margin_bottom = 1064.0
-rect_min_size = Vector2( 1260, 0 )
-mouse_filter = 2
-size_flags_vertical = 3
-custom_constants/separation = 8
-__meta__ = {
-"_edit_use_anchors_": false
-}
+rect_min_size = Vector2( 600, 0 )
+split_offset = 300
 
 [node name="Repositories" type="VBoxContainer" parent="Columns/LeftSide"]
-margin_right = 1260.0
-margin_bottom = 754.0
+margin_right = 1100.0
+margin_bottom = 826.0
 rect_min_size = Vector2( 0, 754 )
 mouse_filter = 2
 size_flags_horizontal = 3
+size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 custom_constants/separation = 8
 
 [node name="Cards" parent="Columns/LeftSide" instance=ExtResource( 3 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 762.0
-margin_right = 1260.0
+margin_top = 838.0
+margin_right = 1100.0
 margin_bottom = 1064.0
-size_flags_horizontal = 3
 size_flags_vertical = 3
 size_flags_stretch_ratio = 2.0
 
-[node name="RightSide" type="VBoxContainer" parent="Columns"]
-margin_left = 1265.0
-margin_right = 1906.0
+[node name="RightSide" type="VSplitContainer" parent="Columns"]
+margin_left = 1112.0
+margin_right = 1904.0
 margin_bottom = 1064.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
+rect_min_size = Vector2( 300, 0 )
+split_offset = 400
+
+[node name="Top" type="VSplitContainer" parent="Columns/RightSide"]
+margin_right = 792.0
+margin_bottom = 634.0
+split_offset = 1000
+
+[node name="LevelInfo" type="VBoxContainer" parent="Columns/RightSide/Top"]
+margin_right = 792.0
+margin_bottom = 470.0
+rect_min_size = Vector2( 0, 50 )
 custom_constants/separation = 8
 
-[node name="LevelInfo" type="VBoxContainer" parent="Columns/RightSide"]
-margin_right = 641.0
-margin_bottom = 448.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
-custom_constants/separation = 8
-
-[node name="LevelPanel" type="VBoxContainer" parent="Columns/RightSide/LevelInfo"]
-margin_right = 641.0
-margin_bottom = 448.0
+[node name="LevelPanel" type="VBoxContainer" parent="Columns/RightSide/Top/LevelInfo"]
+margin_right = 792.0
+margin_bottom = 470.0
 size_flags_vertical = 3
 
-[node name="LevelName" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel"]
-margin_right = 641.0
+[node name="LevelName" type="RichTextLabel" parent="Columns/RightSide/Top/LevelInfo/LevelPanel"]
+margin_right = 792.0
 margin_bottom = 60.0
 rect_min_size = Vector2( 0, 60 )
 size_flags_stretch_ratio = 0.0
@@ -124,13 +114,13 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Text" type="Control" parent="Columns/RightSide/LevelInfo/LevelPanel"]
+[node name="Text" type="Control" parent="Columns/RightSide/Top/LevelInfo/LevelPanel"]
 margin_top = 65.0
-margin_right = 641.0
-margin_bottom = 443.0
+margin_right = 792.0
+margin_bottom = 465.0
 size_flags_vertical = 3
 
-[node name="LevelDescription" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel/Text"]
+[node name="LevelDescription" type="RichTextLabel" parent="Columns/RightSide/Top/LevelInfo/LevelPanel/Text"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 size_flags_vertical = 3
@@ -141,7 +131,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LevelCongrats" type="RichTextLabel" parent="Columns/RightSide/LevelInfo/LevelPanel/Text"]
+[node name="LevelCongrats" type="RichTextLabel" parent="Columns/RightSide/Top/LevelInfo/LevelPanel/Text"]
 visible = false
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -153,31 +143,28 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Goals" type="VBoxContainer" parent="Columns/RightSide/LevelInfo/LevelPanel"]
-margin_top = 448.0
-margin_right = 641.0
-margin_bottom = 448.0
+[node name="Goals" type="VBoxContainer" parent="Columns/RightSide/Top/LevelInfo/LevelPanel"]
+margin_top = 470.0
+margin_right = 792.0
+margin_bottom = 470.0
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="FileBrowser" parent="Columns/RightSide" instance=ExtResource( 5 )]
+[node name="FileBrowser" parent="Columns/RightSide/Top" instance=ExtResource( 5 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 456.0
-margin_right = 641.0
-margin_bottom = 608.0
+margin_top = 482.0
+margin_right = 792.0
+margin_bottom = 634.0
 rect_min_size = Vector2( 0, 152 )
-size_flags_vertical = 3
 size_flags_stretch_ratio = 0.3
 
 [node name="Terminal" parent="Columns/RightSide" instance=ExtResource( 1 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_top = 616.0
-margin_right = 641.0
+margin_top = 646.0
+margin_right = 792.0
 margin_bottom = 1064.0
-size_flags_horizontal = 3
-size_flags_vertical = 3
 
 [node name="SuccessSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 8 )
@@ -275,7 +262,8 @@ text = "Next level"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="saved" from="Columns/RightSide/FileBrowser" to="." method="update_repos"]
+
+[connection signal="saved" from="Columns/RightSide/Top/FileBrowser" to="." method="update_repos"]
 [connection signal="command_done" from="Columns/RightSide/Terminal" to="." method="update_repos"]
 [connection signal="pressed" from="Menu/BackButton" to="." method="back"]
 [connection signal="pressed" from="Menu/ReloadButton2" to="." method="reload_level"]

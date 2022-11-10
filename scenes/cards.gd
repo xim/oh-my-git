@@ -64,17 +64,13 @@ func arrange_cards():
 	t.start()
 	yield(t, "timeout")
 	
-	var amount_cards = get_tree().get_nodes_in_group("cards").size()
-	var total_angle = min(35, 45.0/7*amount_cards)
-	var angle_between_cards = 0
-	if amount_cards > 1:
-		angle_between_cards = total_angle / (amount_cards-1)
-	else:
-		total_angle = 0
-		
+	var num_cards = get_tree().get_nodes_in_group("cards").size()
+	var angle_between_cards = (21 - num_cards * 1.75) * (rect_size.x / 1920)
+	var total_angle = angle_between_cards * (num_cards - 1)
+
 	var current_angle = -total_angle/2
 	for card in get_tree().get_nodes_in_group("cards"):
-		var target_position = Vector2(rect_size.x/2, rect_size.y + card_radius)
+		var target_position = Vector2(rect_size.x/2, card_radius + 290)
 		var target_rotation = current_angle
 		var translation_vec = Vector2(0,-card_radius).rotated(current_angle/180.0*PI)
 		target_position += translation_vec

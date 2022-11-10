@@ -8,8 +8,8 @@ var dragged_object
 var energy = 2
 var used_cards = false
 
-var current_chapter = 0
-var current_level = 0
+var current_chapter = -1
+var current_level = -1
 var skipped_title = false
 
 var _file = "user://savegame.json"
